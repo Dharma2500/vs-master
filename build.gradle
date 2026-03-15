@@ -4,6 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // Рабочий метод из прошлого проекта
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
@@ -24,6 +25,7 @@ minecraft {
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -32,4 +34,14 @@ dependencies {
 
 jar {
     archiveBaseName.set("vs-master")
+    manifest {
+        attributes(
+            "Specification-Title": "VS Master",
+            "Specification-Vendor": "Vitaly_Sokolov",
+            "Specification-Version": version,
+            "Implementation-Title": "VS Master",
+            "Implementation-Version": version,
+            "Implementation-Vendor": "Vitaly_Sokolov"
+        )
+    }
 }
