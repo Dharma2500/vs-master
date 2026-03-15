@@ -4,18 +4,11 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Стандартный способ для Forge 1.16.5 на GitHub
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
 
 apply plugin: 'forge'
-
-version = "1.0.0"
-group = "com.vs"
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 minecraft {
     version = "1.16.5-36.2.39"
@@ -23,25 +16,6 @@ minecraft {
     mappings = "stable_39"
 }
 
-repositories {
-    mavenCentral()
-    maven { url "https://jitpack.io" }
-}
-
-dependencies {
-    implementation fg.deobf("net.minecraftforge:forge:1.16.5-36.2.39")
-}
-
 jar {
     archiveBaseName.set("vs-master")
-    manifest {
-        attributes(
-            "Specification-Title": "VS Master",
-            "Specification-Vendor": "Vitaly_Sokolov",
-            "Specification-Version": version,
-            "Implementation-Title": "VS Master",
-            "Implementation-Version": version,
-            "Implementation-Vendor": "Vitaly_Sokolov"
-        )
-    }
 }
