@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Java 8
@@ -24,13 +24,10 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Clean
+      - name: Clean build
         run: ./gradlew clean --no-daemon
 
-      - name: Setup Forge workspace
-        run: ./gradlew setupDecompWorkspace --no-daemon
-
-      - name: Build JAR
+      - name: Build VS-Master
         run: ./gradlew build -x test --no-daemon
 
       - name: Upload artifact
