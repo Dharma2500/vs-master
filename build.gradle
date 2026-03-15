@@ -4,7 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // ForgeGradle встроен в MDK, используем версию 5.1.+ с changing:true
+        // Стандартный способ для Forge 1.16.5 на GitHub
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
