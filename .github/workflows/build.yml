@@ -1,0 +1,41 @@
+name: Build VS-Master Mod
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 8
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Clean build
+        run: ./gradlew clean --no-daemon
+
+      - name: Setup Forge workspace
+        run: ./gradlew setupDecompWorkspace --no-daemon
+
+      - name: Build VS-Master
+        run: ./gradlew build -x test --no-daemon
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: vs-master-build
+          path: build/libs/vs-master.jar
+          retention-days: 7
